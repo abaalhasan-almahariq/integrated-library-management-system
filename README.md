@@ -13,6 +13,26 @@ A database design and implementation project built with **Oracle Database 10g** 
 - Implemented **PL/SQL procedures and functions**
 - Included basic privilege management with **GRANT / REVOKE**
 
+## Entity Relationship Diagram
+
+A standalone SVG version is available in [`diagrams/erd.svg`](diagrams/erd.svg).
+
+![Integrated Library Management System ERD](diagrams/erd.svg)
+
+The same core relationships can also be viewed directly on GitHub through Mermaid:
+
+```mermaid
+erDiagram
+    PUBLISHERS ||--o{ BOOKS : publishes
+    CATEGORIES ||--o{ BOOKS : classifies
+    BOOKS ||--o{ BOOK_AUTHORS : has
+    AUTHORS ||--o{ BOOK_AUTHORS : contributes
+    MEMBERS ||--o{ BORROWING : borrows
+    STAFF ||--o{ BORROWING : processes
+    BOOKS ||--o{ BORROWING : loan_of
+    BORROWING ||--o| FINES : incurs
+```
+
 ## Database Structure
 
 The schema contains:
@@ -40,12 +60,42 @@ The schema contains:
 ## Repository Structure
 
 ```text
-sql/
-├── 01_schema.sql
-├── 02_queries.sql
-├── 03_views.sql
-└── 04_plsql.sql
+integrated-library-management-system/
+├── README.md
+├── diagrams/
+│   └── erd.svg
+└── sql/
+    ├── 01_schema.sql
+    ├── 02_queries.sql
+    ├── 03_views.sql
+    ├── 04_plsql.sql
+    ├── 05_privileges.sql
+    └── 06_sample_data.sql
 ```
+
+## Running the Project
+
+Run the scripts in this general order:
+
+1. `sql/01_schema.sql` — creates the tables and constraints.
+2. `sql/06_sample_data.sql` — inserts the demonstration dataset.
+3. `sql/03_views.sql` — creates the reusable views.
+4. `sql/04_plsql.sql` — creates the PL/SQL procedure and function.
+5. `sql/02_queries.sql` — contains sample queries to explore the database.
+6. `sql/05_privileges.sql` — demonstrates role and privilege management; some statements require a suitably privileged Oracle account.
+
+## Sample Dataset
+
+The included sample data demonstrates:
+
+- Multiple publishers, categories, authors, and books
+- A many-to-many relationship between books and authors
+- Regular, Student, and VIP members
+- Staff members responsible for borrowing transactions
+- Returned, overdue, and currently borrowed books
+- Paid and unpaid late-return fines
+
+Borrowing dates use `SYSDATE` offsets so the dataset continues to include meaningful active and overdue examples whenever it is run.
 
 ## Technologies
 
