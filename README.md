@@ -17,7 +17,7 @@ A database design and implementation project built with **Oracle Database 10g** 
 
 A standalone SVG version is available in [`diagrams/erd.svg`](diagrams/erd.svg).
 
-![Integrated Library Management System ERD](diagrams/erd.svg)
+![Integrated Library Management System ERD](diagrams/erd.jpg)
 
 The same core relationships can also be viewed directly on GitHub through Mermaid:
 
@@ -63,7 +63,8 @@ The schema contains:
 integrated-library-management-system/
 ├── README.md
 ├── diagrams/
-│   └── erd.svg
+│   ├── erd.svg
+│   └── erd.jpg
 └── sql/
     ├── 01_schema.sql
     ├── 02_queries.sql
